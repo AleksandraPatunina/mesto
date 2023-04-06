@@ -1,2 +1,0 @@
-https://webdevtips.pro/js/pure-js-popup/
-https://github.com/dolbilov/mesto-project/tree/main/src/blocks/popup
