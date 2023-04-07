@@ -20,7 +20,7 @@
 @import url(../blocks/element/__photo/element__photo.css);
 @import url(../blocks/element/__group/element__group.css);
 @import url(../blocks/element/__city-name/element__city-name.css);
-@import url(../blocks/like/__add-button/like__add-button.css);
+@import url(../blocks/like/_add-button/like_add-button.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);
