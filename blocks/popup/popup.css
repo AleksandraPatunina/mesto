@@ -7,7 +7,5 @@
     background-color: rgba(0, 0, 0, 0.5);
     transition: visibility 1s, opacity 0.7s linear;
     opacity: 0;
-    visibility: hidden;
-    /* Скрываем фон и сам попап*/
     z-index: 2;
 }
