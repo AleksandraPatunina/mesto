@@ -1,4 +1,4 @@
-.like_add-button {
+.like-add-button {
     margin: 5px 0 0px;
     width: 22px;
     height: 19px;
@@ -13,7 +13,7 @@
     background-size: contain;
 }
 
-.like_add-button:hover {
+.like-add-button:hover {
     opacity: 0.5;
     cursor: pointer;
 }
