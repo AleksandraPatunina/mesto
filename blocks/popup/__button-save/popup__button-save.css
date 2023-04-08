@@ -8,16 +8,20 @@
     font-size: 18px;
     line-height: 22px;
     text-align: center;
-    height: 50px;
-
+    min-height: 50px;
 }
 
 @media (min-width: 320px) and (max-width: 990px) {
     .popup__button-save {
-        margin: 59px 22px 25px;
+        margin: 42px 22px 25px;
         height: 46px;
         width: calc(100% - 2 * 22px);
         font-size: 14px;
         line-height: 17px;
     }
+}
+
+.popup__button-save:hover {
+    opacity: 0.6;
+    cursor: pointer;
 }

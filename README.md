@@ -1,5 +1,5 @@
 # Наименование проекта: Mesto
-[Ссылка на проект на GitHub Pages]: https://AleksandraPatunina.github.io/mesto/
+[Ссылка на проект на GitHub Pages]: https://AleksandraPatunina.github.io/mesto/index.html
 
 ## Описание проекта:
 **Mesto** - интерактивная страница для возможности выкладывать и оценивать фотографии.

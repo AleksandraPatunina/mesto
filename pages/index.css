@@ -19,8 +19,8 @@
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__photo/element__photo.css);
 @import url(../blocks/element/__group/element__group.css);
-@import url(../blocks/element/__city-name/element__city-name.css);
-@import url(../blocks/like/_add-button/like-add-button.css);
+@import url(../blocks/element/__photo-name/element__photo-name.css);
+@import url(../blocks/element/__like-button/element__like-button.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);

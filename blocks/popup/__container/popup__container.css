@@ -9,7 +9,7 @@
 
 @media (min-width: 320px) and (max-width: 990px) {
     .popup__container {
-        width: 282px;
-        height: 322px;
+        width: 88%;
+        min-height: 322px;
     }
 }
