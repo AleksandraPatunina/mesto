@@ -1,11 +1,11 @@
 .element {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    align-items: center;
-    max-width: 282px;
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 10px;
-    background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  max-width: 282px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: #ffffff;
 }

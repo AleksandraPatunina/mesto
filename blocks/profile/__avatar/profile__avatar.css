@@ -1,15 +1,15 @@
 .profile__avatar {
-    object-fit: contain;
-    object-position:center center;
-    max-height: 120px;
-    max-width: 120px;
-    border-radius: 50%;
+  object-fit: contain;
+  object-position: center center;
+  max-height: 120px;
+  max-width: 120px;
+  border-radius: 50%;
 }
 
 @media (min-width: 320px) and (max-width: 990px) {
-    .profile__avatar {
-        max-height: 120px;
-        max-width: 120px;
-        border-radius: 50%;
-    }
+  .profile__avatar {
+    max-height: 120px;
+    max-width: 120px;
+    border-radius: 50%;
+  }
 }
