@@ -8,6 +8,7 @@
   <meta name="keywords" content="Фото, картинки, фотографии, делиться, лайкать, оценивать">
   <meta name=”Author” content="Александра Патунина">
   <link rel="stylesheet" href="./pages/index.css">
+  <link rel="stylesheet" href="./style.css">
   <title>Место</title>
 </head>
 
@@ -31,42 +32,42 @@
           <img class="element__photo" src="./images/Karachaevsk.png" alt="крепость в г.Карачаевск">
           <div class="element__group">
             <h2 class="element__photo-name">Карачаевск</h2>
-            <button class="element__like-button element__like-button_type_active" type="button"></button>
+            <button class="element__like-button " type="button"></button>
           </div>
         </li>
         <li class="element">
           <img class="element__photo" src="./images/MountainElbrus.png" alt="гора Эльбрус">
           <div class="element__group">
             <h2 class="element__photo-name">Гора Эльбрус</h2>
-            <button class="element__like-button element__like-button_type_active" type="button"></button>
+            <button class="element__like-button" type="button"></button>
           </div>
         </li>
         <li class="element">
           <img class="element__photo" src="./images/Dombai.png" alt="Домбай">
           <div class="element__group">
             <h2 class="element__photo-name">Домбай</h2>
-            <button class="element__like-button element__like-button_type_active" type="button"></button>
+            <button class="element__like-button" type="button"></button>
           </div>
         </li>
         <li class="element">
           <img class="element__photo" src="./images/MountainElbrus.png" alt="гора Эльбрус">
           <div class="element__group">
             <h2 class="element__photo-name">Гора Эльбрус</h2>
-            <button class="element__like-button element__like-button_type_active" type="button"></button>
+            <button class="element__like-button" type="button"></button>
           </div>
         </li>
         <li class="element">
           <img class="element__photo" src="./images/Dombai.png" alt="Домбай">
           <div class="element__group">
             <h2 class="element__photo-name">Домбай</h2>
-            <button class="element__like-button element__like-button_type_active" type="button"></button>
+            <button class="element__like-button" type="button"></button>
           </div>
         </li>
         <li class="element">
           <img class="element__photo" src="./images/Karachaevo_Cherkessiya.png" alt="Карачаево-Черкессия">
           <div class="element__group">
             <h2 class="element__photo-name">Карачаево-Черкессия</h2>
-            <button class="element__like-button element__like-button_type_active" type="button"></button>
+            <button class="element__like-button" type="button"></button>
           </div>
         </li>
       </ul>
@@ -88,6 +89,22 @@
       <button class="popup__button-close" type="button" title="Закрыть"></button>
     </div>
   </div>
+
+  <div class="popup add-popup">
+    <div class="popup__container popup__container_add">
+      <h2 class="popup__title">Новое место</h2>
+      <form class="form" name="picture" novalidate>
+        <fieldset class="popup__fieldset">
+          <input class="popup__input popup__input_type_title" type="text" name="title" placeholder="Название" minlength="1" maxlength="100" required>
+          <input class="popup__input popup__input_type_link" type="text" name="subtitle" placeholder="Ссылка на картинку" minlength="2" maxlength="100" required>
+        </fieldset>
+        <button class="popup__button-add" type="submit" title="Создать">Создать</button>
+      </form>
+      <button class="popup__button-close" type="button" title="Закрыть"></button>
+    </div>
+  </div>
+
+
   <script src="./scripts/index.js"></script>
 </body>
 
