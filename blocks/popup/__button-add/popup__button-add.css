@@ -1,13 +1,3 @@
-.popup__container_add {
-  min-width: 430px;
-}
-
-@media (min-width: 320px) and (max-width: 990px) {
-  .popup__container_add {
-    min-width: 282px;
-  }
-}
-
 .popup__button-add {
   margin: 62px 36px 37px;
   width: calc(100% - 2 * 36px);
@@ -33,8 +23,4 @@
 .popup__button-add:hover {
   opacity: 0.6;
   cursor: pointer;
-}
-
-.element__like-button_type_active{
-  background-image: url(./images/like-active.svg);
 }

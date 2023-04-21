@@ -3,7 +3,7 @@
   flex-direction: column;
   position: relative;
   align-items: center;
-  max-width: 282px;
+  width: 282px;
   margin: 0 auto;
   overflow: hidden;
   border-radius: 10px;

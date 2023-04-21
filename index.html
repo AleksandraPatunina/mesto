@@ -8,7 +8,6 @@
   <meta name="keywords" content="Фото, картинки, фотографии, делиться, лайкать, оценивать">
   <meta name=”Author” content="Александра Патунина">
   <link rel="stylesheet" href="./pages/index.css">
-  <link rel="stylesheet" href="./style.css">
   <title>Место</title>
 </head>
 
@@ -28,61 +27,24 @@
     </section>
     <section class="elements">
       <ul class="elements__items">
-        <li class="element">
-          <img class="element__photo" src="./images/Karachaevsk.png" alt="крепость в г.Карачаевск">
-          <div class="element__group">
-            <h2 class="element__photo-name">Карачаевск</h2>
-            <button class="element__like-button " type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__photo" src="./images/MountainElbrus.png" alt="гора Эльбрус">
-          <div class="element__group">
-            <h2 class="element__photo-name">Гора Эльбрус</h2>
-            <button class="element__like-button" type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__photo" src="./images/Dombai.png" alt="Домбай">
-          <div class="element__group">
-            <h2 class="element__photo-name">Домбай</h2>
-            <button class="element__like-button" type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__photo" src="./images/MountainElbrus.png" alt="гора Эльбрус">
-          <div class="element__group">
-            <h2 class="element__photo-name">Гора Эльбрус</h2>
-            <button class="element__like-button" type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__photo" src="./images/Dombai.png" alt="Домбай">
-          <div class="element__group">
-            <h2 class="element__photo-name">Домбай</h2>
-            <button class="element__like-button" type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img class="element__photo" src="./images/Karachaevo_Cherkessiya.png" alt="Карачаево-Черкессия">
-          <div class="element__group">
-            <h2 class="element__photo-name">Карачаево-Черкессия</h2>
-            <button class="element__like-button" type="button"></button>
-          </div>
-        </li>
+        <!--Здесь будут карточки-->
       </ul>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__text">&copy; 2023 Mesto Russia</p>
   </footer>
+
+  <!--Popup для изменения имени автора и профессии-->
   <div class="popup">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="form" name="profileData" novalidate>
         <fieldset class="popup__fieldset">
-          <input class="popup__input popup__input_type_name" type="text" name="title" placeholder="Имя" minlength="2" maxlength="50" required>
-          <input class="popup__input popup__input_type_job" type="text" name="subtitle" placeholder="О себе" minlength="2" maxlength="100" required>
+          <input class="popup__input popup__input_type_name" type="text" name="title" placeholder="Имя" minlength="2"
+            maxlength="50" required>
+          <input class="popup__input popup__input_type_job" type="text" name="subtitle" placeholder="О себе"
+            minlength="2" maxlength="100" required>
         </fieldset>
         <button class="popup__button-save" type="submit" title="Сохранить">Сохранить</button>
       </form>
@@ -90,13 +52,16 @@
     </div>
   </div>
 
+  <!--Popup для добавления новой картинки-->
   <div class="popup add-popup">
     <div class="popup__container popup__container_add">
       <h2 class="popup__title">Новое место</h2>
       <form class="form" name="picture" novalidate>
         <fieldset class="popup__fieldset">
-          <input class="popup__input popup__input_type_title" type="text" name="title" placeholder="Название" minlength="1" maxlength="100" required>
-          <input class="popup__input popup__input_type_link" type="text" name="subtitle" placeholder="Ссылка на картинку" minlength="2" maxlength="100" required>
+          <input class="popup__input popup__input_type_title" type="text" name="title" placeholder="Название"
+            minlength="1" maxlength="100" required>
+          <input class="popup__input popup__input_type_link" type="text" name="subtitle"
+            placeholder="Ссылка на картинку" minlength="2" maxlength="100" required>
         </fieldset>
         <button class="popup__button-add" type="submit" title="Создать">Создать</button>
       </form>
@@ -104,7 +69,30 @@
     </div>
   </div>
 
+  <!--Popup для просмотра картинки-->
+  <div class="popup popup-pictures">
+    <div class="popup__picture-gallery">
+      <button class="popup__button-close" type="button" title="Закрыть"></button>
+      <figure class="popup__figure">
+        <img class="popup__picture" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
+          alt=" ">
+        <figcaption class="popup__picture-description">  </figcaption>
+      </figure>
+    </div>
+  </div>
 
+  <!--Template-->
+  <template id="picture-template">
+    <li class="element">
+      <img class="element__photo" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
+        alt="крепость в г.Карачаевск">
+      <button class="element__delete" type="button"></button>
+      <div class="element__group">
+        <h2 class="element__photo-name"></h2>
+        <button class="element__like-button" type="button"></button>
+      </div>
+    </li>
+  </template>
   <script src="./scripts/index.js"></script>
 </body>
 
