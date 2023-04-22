@@ -36,19 +36,19 @@
   </footer>
 
   <!--Popup для изменения имени автора и профессии-->
-  <div class="popup">
+  <div class="popup profile-popup">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="form" name="profileData" novalidate>
+      <form class="form form__profile-container" name="profileData" novalidate>
         <fieldset class="popup__fieldset">
           <input class="popup__input popup__input_type_name" type="text" name="title" placeholder="Имя" minlength="2"
             maxlength="50" required>
           <input class="popup__input popup__input_type_job" type="text" name="subtitle" placeholder="О себе"
             minlength="2" maxlength="100" required>
         </fieldset>
-        <button class="popup__button-save" type="submit" title="Сохранить">Сохранить</button>
+        <button class="popup__submit-button popup__submit-button_save" type="submit" title="Сохранить">Сохранить</button>
       </form>
-      <button class="popup__button-close" type="button" title="Закрыть"></button>
+      <button class="popup__button-close popup__button-close_profile-container" type="button" title="Закрыть"></button>
     </div>
   </div>
 
@@ -56,27 +56,27 @@
   <div class="popup add-popup">
     <div class="popup__container popup__container_add">
       <h2 class="popup__title">Новое место</h2>
-      <form class="form" name="picture" novalidate>
+      <form class="form form__add-container" name="picture" novalidate>
         <fieldset class="popup__fieldset">
           <input class="popup__input popup__input_type_title" type="text" name="title" placeholder="Название"
             minlength="1" maxlength="100" required>
           <input class="popup__input popup__input_type_link" type="text" name="subtitle"
             placeholder="Ссылка на картинку" minlength="2" maxlength="100" required>
         </fieldset>
-        <button class="popup__button-add" type="submit" title="Создать">Создать</button>
+        <button class="popup__submit-button popup__submit-button_add" type="submit" title="Создать">Создать</button>
       </form>
-      <button class="popup__button-close" type="button" title="Закрыть"></button>
+      <button class="popup__button-close popup__button-close_add-container" type="button" title="Закрыть"></button>
     </div>
   </div>
 
   <!--Popup для просмотра картинки-->
   <div class="popup popup-pictures">
     <div class="popup__picture-gallery">
-      <button class="popup__button-close" type="button" title="Закрыть"></button>
+      <button class="popup__button-close popup__button-close_pictures-container" type="button" title="Закрыть"></button>
       <figure class="popup__figure">
         <img class="popup__picture" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg"
           alt=" ">
-        <figcaption class="popup__picture-description">  </figcaption>
+        <figcaption class="popup__picture-description"></figcaption>
       </figure>
     </div>
   </div>
