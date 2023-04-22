@@ -16,7 +16,7 @@ const profileName = document.querySelector(".profile__info-title");
 const profileJob = document.querySelector(".profile__info-subtitle");
 const nameInput = document.querySelector(".popup__input_type_name");
 const jobInput = document.querySelector(".popup__input_type_job");
-const formElement = document.querySelector(".form__profile");
+const formElement = document.querySelector(".form-profile");
 
 //массив с карточками
 const initialCards = [
