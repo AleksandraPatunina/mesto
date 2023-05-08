@@ -1,5 +1,6 @@
 //объявление переменных
 //popup-ы
+const Popup = document.querySelectorAll('.popup');
 const profilePopup = document.querySelector(".profile-popup");
 const addPopup = document.querySelector(".add-popup");
 const picturePopup = document.querySelector(".popup-pictures");
@@ -98,6 +99,7 @@ initialCards.forEach((picture) => {
 //открытие всех popup-ов
 function openPopupHandler(popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener('keydown', (event) => closePopupByKeydownEsc(event, popup));  //ЗДЕСЬ
 }
 
 
@@ -132,11 +134,31 @@ addFormElement.addEventListener("submit", (evt) => {
 });
 
 
+//закрытие popup при клике на оверлей
+function closePopupByClickOnOverlay(event, popup) {
+  if (event.target === popup) {
+    closePopup(popup);
+  }
+}
+
+
+// закрытие  popup при нажатии на клавишу Escape
+function closePopupByKeydownEsc(event, popup) {
+  if (event.key === 'Escape') {
+    closePopup(popup);
+  }
+}
+
 
 //закрытие всех popup-ов
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', (event) => closePopupByKeydownEsc(event, popup));
 }
+
+Popup.forEach((popup) => {
+  popup.addEventListener('click', (event) => closePopupByClickOnOverlay(event, popup));
+});
 
 
 //открытие popup для редактирования профиля
