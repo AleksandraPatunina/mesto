@@ -5,6 +5,7 @@
   min-height: 27px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
 @media (min-width: 320px) and (max-width: 990px) {
