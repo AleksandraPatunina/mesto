@@ -1,5 +1,5 @@
 import { initialCards } from "./constants.js";
-import { toggleButtonState }  from "./validate.js";
+import { inactiveSubmitButton }  from "./validate.js";
 
 //объявление переменных
 //popup-ы
@@ -145,13 +145,14 @@ Popups.forEach((popup) => {
 openPopupBtn.addEventListener("click", () => {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
+  inactiveSubmitButton(profilePopup.querySelector('.popup__submit-button'), {inactiveButtonClass: 'popup__submit-button_type_inactive'});
   openPopupHandler(profilePopup);
-  toggleButtonState(Array.from(editProfileForm.elements), editProfileForm.querySelector('.popup__submit-button'), settings);
 });
 
 
 //открытие popup для создание пользователем новой карточки
 addPopupBtn.addEventListener("click", () => {
+  inactiveSubmitButton(addPopup.querySelector('.popup__submit-button'), {inactiveButtonClass: 'popup__submit-button_type_inactive'});
   openPopupHandler(addPopup);
 });
 
