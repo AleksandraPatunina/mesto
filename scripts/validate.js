@@ -11,7 +11,6 @@ const showInputError = (formElement, inputElement, errorMessage, { inputErrorCla
     errorElement.classList.add(errorClass);
 };
 
-
 // Функция, которая удаляет класс с ошибкой
 const hideInputError = (formElement, inputElement, { inputErrorClass, errorClass }) => {
     // Находим элемент span с сообщением об ошибке
@@ -22,7 +21,6 @@ const hideInputError = (formElement, inputElement, { inputErrorClass, errorClass
     // Очистим ошибку
     errorElement.textContent = '';
 };
-
 
 // Функция, которая проверяет валидность поля
 const isValid = (formElement, inputElement, settings) => {
@@ -35,7 +33,6 @@ const isValid = (formElement, inputElement, settings) => {
     }
 };
 
-
 // Функция принимает массив полей
 const hasInvalidInput = (inputList) => {
     // проходим по этому массиву методом some
@@ -45,20 +42,17 @@ const hasInvalidInput = (inputList) => {
     });
 };
 
-
 //Функция, которая делает кнопку неактивной
 const inactiveSubmitButton = (buttonElement, settings) => {
     buttonElement.classList.add(settings.inactiveButtonClass);
     buttonElement.setAttribute('disabled', true);
 };
 
-
 //Функция, которая делает кнопку активной
 const activateSubmitButton = (buttonElement, settings) => {
     buttonElement.classList.remove(settings.inactiveButtonClass);
     buttonElement.removeAttribute('disabled', true);
 };
-
 
 // Функция принимает массив полей ввода и элемент кнопки, состояние которой нужно менять
 const toggleButtonState = (inputList, buttonElement, settings) => {
@@ -71,7 +65,6 @@ const toggleButtonState = (inputList, buttonElement, settings) => {
         activateSubmitButton(buttonElement, settings);
     }
 };
-
 
 //функция, которая примет параметром элемент формы и добавит её полям нужные обработчики
 const setEventListeners = (formElement, settings) => {
@@ -93,7 +86,6 @@ const setEventListeners = (formElement, settings) => {
     });
 };
 
-
 // Функция, которая добавляет валидацию ко всем формам на странице
 const enableValidation = (settings) => {
     // Найдём все формы с указанным классом в DOM, сделаем из них массив методом Array.from
@@ -108,16 +100,17 @@ const enableValidation = (settings) => {
     });
 };
 
-
-// Вызываем функцию enableValidation и передаем ей объект с настройками
-enableValidation({
+// Создаем объект с настройками
+const validationConfig = {
     formSelector: '.form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__submit-button',
     inactiveButtonClass: 'popup__submit-button_type_inactive',
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'form__input-error_type_active'
-});
+};
 
+// Вызываем функцию enableValidation и передаем ей объект с настройками
+enableValidation(validationConfig);
 
 export { inactiveSubmitButton };

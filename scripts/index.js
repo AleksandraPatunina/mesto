@@ -1,9 +1,9 @@
 import { initialCards } from "./constants.js";
-import { inactiveSubmitButton }  from "./validate.js";
+import { inactiveSubmitButton } from "./validate.js";
 
 //объявление переменных
 //popup-ы
-const Popups = document.querySelectorAll('.popup');
+const popups = document.querySelectorAll('.popup');
 const profilePopup = document.querySelector(".profile-popup");
 const addPopup = document.querySelector(".add-popup");
 const picturePopup = document.querySelector(".popup-pictures");
@@ -25,7 +25,8 @@ const addPopupBtn = document.querySelector(".profile__add-button");
 const closePopupBtnProfile = document.querySelector(".popup__button-close_profile-container");
 const closePopupBtnAddCard = document.querySelector(".popup__button-close_add-container");
 const closePopupBtnPicture = document.querySelector(".popup__button-close_pictures-container");
-
+const profilePopupSubmitBtn = profilePopup.querySelector('.popup__submit-button_save');
+const addPopupSubmitBtn = addPopup.querySelector('.popup__submit-button_add');
 
 //логика создания карточки
 const createCardElement = (pictureData) => {
@@ -63,35 +64,27 @@ const createCardElement = (pictureData) => {
 
   return pictureElement;
 };
+
 // создание карточек при загрузке страницы
 initialCards.forEach((picture) => {
   const element = createCardElement(picture);
   picturesContainer.prepend(element);
 });
 
-
 //открытие всех popup-ов
 function openPopupHandler(popup) {
   popup.classList.add("popup_opened");
-
-  function handleKeyDown(event) {
-    closePopupByKeydownEsc(event, popup);
-  }
-
-  document.addEventListener('keydown', handleKeyDown);
-}
-
+  document.addEventListener('click', closePopupByClickOnOverlay);
+  document.addEventListener('keydown', closePopupByKeydownEsc);
+};
 
 //сохранение данных из формы
 formEditProfile.addEventListener("submit", (evt) => {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
-
   closePopup(profilePopup);
 });
-
-
 
 //создание карточки
 addFormElement.addEventListener("submit", (evt) => {
@@ -112,62 +105,53 @@ addFormElement.addEventListener("submit", (evt) => {
   closePopup(addPopup);
 });
 
-
 //закрытие popup при клике на оверлей
-function closePopupByClickOnOverlay(event, popup) {
-  if (event.target === popup) {
-    closePopup(popup);
-  }
-}
+const closePopupByClickOnOverlay = (evt) => {
+  const isOverlay = evt.target.classList.contains('popup'); 
+  const isCloseBtn = evt.target.classList.contains('popup__button-close');
 
+  if (isOverlay || isCloseBtn) {
+    popups.forEach(closePopup);
+  }
+}; 
 
 // закрытие  popup при нажатии на клавишу Escape
-function closePopupByKeydownEsc(event, popup) {
-  if (event.key === 'Escape') {
-    closePopup(popup);
+const closePopupByKeydownEsc = (evt) => {
+  if (evt.key === 'Escape') {
+    popups.forEach(closePopup);
   }
-}
+};
 
 //закрытие всех popup-ов
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', handleKeyDown);
-
-}
-
-
-Popups.forEach((popup) => {
-  popup.addEventListener('click', (event) => closePopupByClickOnOverlay(event, popup));
-});
-
+  document.removeEventListener('keydown', closePopupByKeydownEsc);
+  document.removeEventListener('click', closePopupByClickOnOverlay);
+};
 
 //открытие popup для редактирования профиля
 openPopupBtn.addEventListener("click", () => {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
-  inactiveSubmitButton(profilePopup.querySelector('.popup__submit-button'), {inactiveButtonClass: 'popup__submit-button_type_inactive'});
+  inactiveSubmitButton(profilePopupSubmitBtn, { inactiveButtonClass: 'popup__submit-button_type_inactive' });
   openPopupHandler(profilePopup);
 });
 
-
 //открытие popup для создание пользователем новой карточки
 addPopupBtn.addEventListener("click", () => {
-  inactiveSubmitButton(addPopup.querySelector('.popup__submit-button'), {inactiveButtonClass: 'popup__submit-button_type_inactive'});
+  inactiveSubmitButton(addPopupSubmitBtn, { inactiveButtonClass: 'popup__submit-button_type_inactive' });
   openPopupHandler(addPopup);
 });
-
 
 //закрытие popup редактирования профиля
 closePopupBtnProfile.addEventListener("click", () => {
   closePopup(profilePopup);
 });
 
-
 //закрытие popup добавления картинки
 closePopupBtnAddCard.addEventListener("click", () => {
   closePopup(addPopup);
 });
-
 
 //закрытие popup просмотра увеличенной картинки
 closePopupBtnPicture.addEventListener("click", () => {
