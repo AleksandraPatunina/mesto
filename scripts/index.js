@@ -109,16 +109,22 @@ addFormElement.addEventListener("submit", (evt) => {
 const closePopupByClickOnOverlay = (evt) => {
   const isOverlay = evt.target.classList.contains('popup'); 
   const isCloseBtn = evt.target.classList.contains('popup__button-close');
-
+    
   if (isOverlay || isCloseBtn) {
-    popups.forEach(closePopup);
+    const openedPopup = document.querySelector('.popup_opened');
+    if (openedPopup) {
+      closePopup(openedPopup);
+    }
   }
 }; 
 
 // закрытие  popup при нажатии на клавишу Escape
 const closePopupByKeydownEsc = (evt) => {
   if (evt.key === 'Escape') {
-    popups.forEach(closePopup);
+    const openedPopup = document.querySelector('.popup_opened');
+    if (openedPopup) {
+      closePopup(openedPopup);
+    }
   }
 };
 
