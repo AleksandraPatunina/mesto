@@ -1,15 +1,10 @@
  class Card {
-    constructor(pictureData, pictureTemplate, openImagePopup) {
+    constructor(pictureData, openImagePopup) {
         this._pictureData = pictureData;
         this._link = pictureData.link;
-        this._name = pictureData.name;
-        this._pictureTemplate = pictureTemplate;
+        this._name = pictureData.title;
         this._openImagePopup = openImagePopup;
-    };
-
-    _getTemplateClone() {
-        //выбираем контент Template, содержащийся в теге li, и клонируем его
-        return this._pictureTemplate.content.querySelector('.element').cloneNode(true);
+        this._cloneElement = document.getElementById('picture-template').content.querySelector('.element').cloneNode(true);
     };
 
     //ставим лайк
@@ -35,14 +30,13 @@
     }
 
     //публичный метод создания карточки (логика)
-    createCard() {
-        this._cloneElement = this._getTemplateClone();
+    createCard= () => {
         //находим элементы, которые будут меняться: картинка и ее подпись
         this._imageElement = this._cloneElement.querySelector('.element__photo');
         this._cardSubtitle = this._cloneElement.querySelector('.element__photo-name');
-        //находим кнопки лайк и удалить
-        this._pictureDeleteBtn = this._cloneElement.querySelector('.element__delete');
-        this._likeBtn = this._cloneElement.querySelector('.element__like-button');
+      //находим кнопки лайк и удалить
+      this._pictureDeleteBtn = this._cloneElement.querySelector('.element__delete');
+      this._likeBtn = this._cloneElement.querySelector('.element__like-button');
         this._imageElement.src = this._link;
         this._imageElement.alt = this._name;
         this._cardSubtitle.textContent = this._name;

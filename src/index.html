@@ -7,17 +7,17 @@
   <meta name="description" content="Страница, которая дает возможность делиться фотографиями">
   <meta name="keywords" content="Фото, картинки, фотографии, делиться, лайкать, оценивать">
   <meta name=”Author” content="Александра Патунина">
-  <link rel="stylesheet" href="./pages/index.css">
+   <!--<link rel="stylesheet" href="./pages/index.css">-->
   <title>Место</title>
 </head>
 
 <body class="page">
   <header class="header">
-    <img class="header__logo" src="./images/logo.svg" alt="логотип Место Россия">
+    <img class="header__logo" src= "<%=require('./images/logo.svg')%>" alt="логотип Место Россия">
   </header>
   <main class="main-content">
     <section class="profile">
-      <img class="profile__avatar" src="./images/avatar.jpg" alt="Фото Жак-Ив Кусто">
+      <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Фото Жак-Ив Кусто">
       <div class="profile__info">
         <h1 class="profile__info-title">Жак-Ив Кусто</h1>
         <button class="profile__edit-button" type="button"></button>
@@ -64,9 +64,9 @@
           <input id="name-input" class="popup__input popup__input_type_title" type="text" name="title"
             placeholder="Название" minlength="2" maxlength="30" required>
           <span class="form__input-error name-input-error"></span>
-          <input id="email-input" class="popup__input popup__input_type_link" type="url" name="subtitle"
+          <input id="link" class="popup__input popup__input_type_link" type="url" name="link"
             placeholder="Ссылка на картинку" minlength="2" maxlength="100" required>
-          <span class="form__input-error email-input-error"></span>
+          <span class="form__input-error link-error"></span>
         </fieldset>
         <button class="popup__submit-button popup__submit-button_add" type="submit" title="Создать"
           disabled>Создать</button>
@@ -99,7 +99,7 @@
       </div>
     </li>
   </template>
-  <script src="./scripts/index.js" type="module"></script>
+   <!--<script src="./pages/index.js" type="module"></script>-->
 
 </body>
 
