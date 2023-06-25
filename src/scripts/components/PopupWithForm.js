@@ -9,7 +9,7 @@ export default class PopupWithForm extends Popup {
   }
 
   // приватный метод, который собирает данные всех полей формы для размещения в профиле
-  getInputValue() {
+  _getInputValue() {
     this._value = {};
     this._inputSelector.forEach(input => {
       this._value[input.name] = input.value;
@@ -24,13 +24,18 @@ export default class PopupWithForm extends Popup {
     })
   }
   
-  setEventListeners () {
-    super.setEventListeners();
-    this._formSelector.addEventListener('submit', this._formSubmitFunction);
-  }
-
-  close() {
-    super.close();
-    this._formSelector.reset();
-  }
+setEventListeners () {
+  super.setEventListeners();
+  this._submitHandler = (evt) => {
+    evt.preventDefault();
+    this._formSubmitFunction(this._getInputValue());
+  };
+  this._formSelector.addEventListener('submit', this._submitHandler);
 }
+
+close() {
+  super.close();
+  this._formSelector.reset();
+  this._formSelector.removeEventListener('submit', this._submitHandler);
+}
+ }

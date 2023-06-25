@@ -4,7 +4,7 @@ export default class Popup {
     }
 
     //закрытие popup при клике на оверлей и крестик
-    _handleClicclosePopupByClickOnOverlayAndCloseBtnkClose = (evt) => {
+    _handlePopupCloseByClick = (evt) => {
         this._isOverlay = evt.target.classList.contains('popup');
         this._isCloseBtn = evt.target.classList.contains('popup__button-close');
         if (this._isOverlay || this._isCloseBtn) {
@@ -23,17 +23,18 @@ export default class Popup {
     open() {
         this._popup.classList.add('popup_opened');
         this.setEventListeners();
+        document.addEventListener('keydown', this._closePopupByKeydownEsc);
     }
 
       //публичный метод который отвечает за закрытие  попапа
     close() {
         this._popup.classList.remove('popup_opened');
         document.removeEventListener('keydown', this._closePopupByKeydownEsc);
+        document.removeEventListener('click', this._handlePopupCloseByClick);
     }
 
     // публичный метод, который добавляет слушатель клика иконке закрытия попапа + закрытие по оверлей 
     setEventListeners() {
-        document.addEventListener('click', this._handleClicclosePopupByClickOnOverlayAndCloseBtnkClose);
-        document.addEventListener('keydown', this._closePopupByKeydownEsc);
+        document.addEventListener('click', this._handlePopupCloseByClick);
     }
 }

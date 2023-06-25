@@ -2,11 +2,11 @@
 const initialCards = [
     {
       title: "Архыз",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+      link: "https://tourism.interfax.ru/images/cms-image-000012324.jpg",
     },
     {
-      title: "Челябинская область",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+      title: "Дагестан",
+      link: "https://s2.stc.all.kpcdn.net/russia/wp-content/uploads/2022/10/Dagestan-photo1664540583-9.jpg",
     },
     {
       title: "Мурманск",
@@ -14,7 +14,7 @@ const initialCards = [
     },
     {
       title: "Камчатка",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+      link: "https://wanderings.online/wp-content/uploads/2016/10/kronotsky-nature-reserve-kamchatka.jpg",
     },
     {
       title: "Холмогорский район",
@@ -22,7 +22,7 @@ const initialCards = [
     },
     {
       title: "Байкал",
-      link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+      link: "https://library.vladimir.ru/wp-content/uploads/2017/03/%D0%B1%D0%B0%D0%B9.jpg",
     },
   ];
 

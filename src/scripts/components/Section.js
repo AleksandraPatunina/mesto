@@ -3,14 +3,14 @@ class Section {
     this._container = document.querySelector(containerSelector);
     this._initialCards = items; // массив данных, которые нужно добавить на страницу при инициализации класса
     //функция, отвечающая за создание и отрисовку данных на странице
-    this.renderer = renderer;
+    this._renderer = renderer;
   }
 
   //отвечает за отрисовку всех элементов. Отрисовка каждого отдельного элемента должна осуществляться функцией renderer
   //добавляем карточку из массива
-  cardsToAddFromOriginalArray() {
+  renderItems() {
     this._initialCards.forEach(element => {   
-      this.addItem(this.renderer(element));
+      this.addItem(this._renderer(element));
     })
   }
 
