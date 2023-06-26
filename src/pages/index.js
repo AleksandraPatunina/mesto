@@ -48,7 +48,7 @@ const profilePopup = new PopupWithForm('.profile-popup', (inputValue) => {
 
 // Popup для добавления новой картинки
 const popupAddCard = new PopupWithForm('.add-popup', (inputValue) => {
-  section.addItem(section._renderer(inputValue));
+  section.addItem(inputValue);
   popupAddCard.close();
 });
 

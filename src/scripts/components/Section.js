@@ -10,13 +10,13 @@ class Section {
   //добавляем карточку из массива
   renderItems() {
     this._initialCards.forEach(element => {   
-      this.addItem(this._renderer(element));
+      this.addItem(element);
     })
   }
 
   // публичный метод, который принимает DOM-элемент и добавляет его в контейнер
-  addItem(elementDom) {
-    this._container.prepend(elementDom);
+  addItem(data) {
+    this._container.prepend(this._renderer(data));
   }
 }
 export { Section }
