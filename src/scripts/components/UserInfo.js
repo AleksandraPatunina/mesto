@@ -11,8 +11,8 @@ export default class UserInfo {
   //публичный метод, который возвращает объект с данными пользователя
   getUserInfo() {
     return {
-      title: this._profileName.textContent,
-      subtitle: this._profileJob.textContent
+      username: this._profileName.textContent,
+      job: this._profileJob.textContent
     };
   };
  

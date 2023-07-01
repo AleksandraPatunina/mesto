@@ -39,4 +39,14 @@ return fetch(`${this._url}/users/me`,{
 })
 .then (this._checkResponse)
 }
+setNewAvatarPicture(data){
+    return fetch(`${this._url}/users/me/avatar`, {
+        method: 'PATCH',
+        headers: this._headers,
+        body: JSON.stringify({
+            avatar: data.avatar,
+        })   
+})
+.then (this._checkResponse)
+}
 }

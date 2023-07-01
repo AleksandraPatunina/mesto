@@ -67,7 +67,8 @@ const profilePopup = new PopupWithForm('.profile-popup', (inputValue) => {
   .then(res => {
     userInfo.setUserInfo({username:res.name, job:res.about, avatar:res.avatar})
   })
-  .catch((error => console.log(`Возникла ошибка при попытке редактирования профиля ${error}`)))
+  .catch((error => console.error(`Возникла ошибка при попытке редактирования профиля ${error}`)))
+  .finally()
 });
 
 // Popup для добавления новой картинки
@@ -77,7 +78,14 @@ const popupAddCard = new PopupWithForm('.add-popup', (inputValue) => {
 
 //Popup для изменения аватара профиля
 const popupEditAvatar = new PopupWithForm('.edit-avatar-popup',(InputValue)=> {
-document.querySelector('.profile__avatar').src = InputValue.avatar //src картинки аватара
+  api.setNewAvatarPicture(InputValue)
+  .then(res => {
+    console.log(res)
+    userInfo.setUserInfo({username:res.name, job:res.about, avatar:res.avatar})
+  })
+  .catch((error => console.error(`Возникла ошибка при обновлении аватара профиля ${error}`)))
+  .finally()
+//document.querySelector('.profile__avatar').src = InputValue.avatar //src картинки аватара
 }) 
 //console.log(popupEditAvatar)
 
@@ -126,3 +134,4 @@ Promise.all([api.getInfo(), api.getCards()])
   userInfo.setUserInfo({username:userData.name, job:userData.about, avatar:userData.avatar})
   section.renderItems(cardData);
 })
+.catch((error => console.error(`Возникла ошибка при начальной загрузке страницы ${error}`)))
