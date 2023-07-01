@@ -29,6 +29,7 @@ setEventListeners () {
   this._submitHandler = (evt) => {
     evt.preventDefault();
     this._formSubmitFunction(this._getInputValue());
+    this.close(); 
   };
   this._formSelector.addEventListener('submit', this._submitHandler);
 }

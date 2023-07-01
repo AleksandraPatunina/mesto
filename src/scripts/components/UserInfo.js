@@ -4,6 +4,8 @@ export default class UserInfo {
     this._profileName = document.querySelector(profileConfig.profileName);
     //О себе с селектром .profile__info-subtitle
     this._profileJob = document.querySelector(profileConfig.profileJob); 
+    //аватар с селектором .profile__avatar
+    this._profileAvatar = document.querySelector(profileConfig.profileAvatar)
   }
 
   //публичный метод, который возвращает объект с данными пользователя
@@ -15,8 +17,9 @@ export default class UserInfo {
   };
  
   //публичный метод, который принимает новые данные пользователя и добавляет их на страницу
-  setUserInfo(newSettings) {
-    this._profileName.textContent = newSettings.title;
-    this._profileJob.textContent = newSettings.subtitle;
+  setUserInfo({username, job, avatar}) {
+    this._profileName.textContent = username;
+    this._profileJob.textContent = job;
+    this._profileAvatar.src = avatar; //имя name инпута
   };
 }

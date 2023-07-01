@@ -17,11 +17,13 @@
   </header>
   <main class="main-content">
     <section class="profile">
-      <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Фото Жак-Ив Кусто">
+      <button class="profile__avatar-edit" type="button" title="Обновить аватар">
+        <img class="profile__avatar" src="#" alt="Аватар">
+      </button>      
       <div class="profile__info">
-        <h1 class="profile__info-title">Жак-Ив Кусто</h1>
+        <h1 class="profile__info-title"></h1>
         <button class="profile__edit-button" type="button"></button>
-        <p class="profile__info-subtitle">Исследователь океана</p>
+        <p class="profile__info-subtitle"></p>
       </div>
       <button class="profile__add-button" type="button"></button>
     </section>
@@ -41,10 +43,10 @@
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="form form-profile" name="profileData" novalidate>
         <fieldset class="popup__fieldset">
-          <input id="title-input" class="popup__input popup__input_type_name" type="text" name="title" placeholder="Имя"
+          <input id="title-input" class="popup__input popup__input_type_name" type="text" name="username" placeholder="Имя"
             minlength="2" maxlength="40" required>
           <span class="form__input-error title-input-error"></span>
-          <input id="subtitle-input" class="popup__input popup__input_type_job" type="text" name="subtitle"
+          <input id="subtitle-input" class="popup__input popup__input_type_job" type="text" name="job"
             placeholder="О себе" minlength="2" maxlength="200" required>
           <span class="form__input-error subtitle-input-error"></span>
         </fieldset>
@@ -87,6 +89,34 @@
     </div>
   </div>
 
+ <!--Popup для обновления аватара-->
+  <div class="popup edit-avatar-popup">
+    <div class="popup__container popup__container_edit-profile">
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form class="form form-edit-profile" name="picture" novalidate>
+        <fieldset class="popup__fieldset">
+          <input id="link" class="popup__input popup__input_type_link popup__input_edit-profile" type="url" name="avatar"
+            placeholder="Ссылка на аватар" required>
+          <span class="form__input-error form__input-error_avatar link-error"></span>
+        </fieldset>
+        <button class="popup__submit-button popup__submit-button_edit" type="submit" title="Сохранить"
+          disabled>Сохранить</button>
+      </form>
+      <button class="popup__button-close popup__button-close_edit-profile" type="button" title="Закрыть"></button>
+    </div>
+  </div>
+
+    <!--Popup для удаления картинки-->
+    <div class="popup popup-delete">
+    <div class="popup__container popup__container_delete">
+      <form class="form form-delete" name="delete-picture" novalidate>
+      <h2 class="popup__title popup__title_delete">Вы уверены?</h2>
+      <button class="popup__submit-button popup__submit-button_delete-picture" type="submit" title="Подтвердить">Да</button>
+    </form>
+    <button class="popup__button-close popup__button-close_delete-container" type="button" title="Закрыть"></button>
+    </div>
+    </div>
+    
   <!--Template-->
   <template id="picture-template">
     <li class="element">
@@ -96,6 +126,7 @@
       <div class="element__group">
         <h2 class="element__photo-name"></h2>
         <button class="element__like-button" type="button"></button>
+        <p class="element__like-counter">0</p>
       </div>
     </li>
   </template>

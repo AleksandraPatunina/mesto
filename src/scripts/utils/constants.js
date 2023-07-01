@@ -30,6 +30,8 @@ const initialCards = [
 const openPopupBtn = document.querySelector(".profile__edit-button");//кнопка редактирвоания профиля
 const formEditProfile = document.querySelector(".form-profile");
 const formAddCard = document.querySelector('.form-add');
+const formEditAvatar = document.querySelector('.form-edit-profile');
+const editAvatarBtn = document.querySelector(".profile__avatar-edit");//кнопка редактирвоания аватара
 const addPopupBtn = document.querySelector(".profile__add-button");//кнопка откртия формы для добавления новой карточки
 
 // Создаем объект с настройками
@@ -45,7 +47,8 @@ const config = {
 //создаем объект для профиля
 const profileConfig = {
   profileName: '.profile__info-title',
-  profileJob: '.profile__info-subtitle'
+  profileJob: '.profile__info-subtitle',
+  profileAvatar: '.profile__avatar'
 }
 
 
@@ -53,6 +56,8 @@ const profileConfig = {
     openPopupBtn,
     formEditProfile,
     formAddCard,
+    formEditAvatar,
     addPopupBtn,
+    editAvatarBtn,
     config,
     profileConfig};
