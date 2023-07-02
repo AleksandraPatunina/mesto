@@ -54,6 +54,12 @@ _changeTrashButtonVisibility(){
 
 removeCard = () => {
     this._cloneElement.remove();
+    this._cloneElement= null;
+  }
+
+// Метод для проверки статуса лайка
+isLiked() {
+    return  this._likeBtn.classList.contains('element__like-button_type_active');
   }
 
 //проверяем,я ли посавила лайк

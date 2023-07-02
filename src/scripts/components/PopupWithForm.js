@@ -4,9 +4,9 @@ export default class PopupWithForm extends Popup {
   constructor(popupSelector, formSubmitFunction) {
     super(popupSelector);
     this._formSubmitFunction = formSubmitFunction;
-    this._formSelector = this._popup.querySelector('.form');
-    this._inputSelector = this._formSelector.querySelectorAll('.popup__input');
-    this._submitBtn = this._formSelector.querySelector('.popup__submit-button');
+    this._form = this._popup.querySelector('.form');
+    this._inputSelector = this._form.querySelectorAll('.popup__input');
+    this._submitBtn = this._form.querySelector('.popup__submit-button');
     this._defaultBtnText = this._submitBtn.textContent;
   }
 
@@ -30,11 +30,11 @@ setEventListeners () {
   super.setEventListeners();
   this._submitHandler = (evt) => {
     evt.preventDefault();
-    this._submitBtn.textContent =`${this._submitBtn.textContent}...`;
+    this._submitBtn.textContent = 'Сохранение...';
     this._formSubmitFunction(this._getInputValue());
     this.close(); 
   };
-  this._formSelector.addEventListener('submit', this._submitHandler);
+  this._form.addEventListener('submit', this._submitHandler);
 }
 
 //появление на кнопке текста Сохранить...
@@ -44,7 +44,7 @@ setupDefaultTextOnBtn(){
 
 close() {
   super.close();
-  this._formSelector.reset();
-  this._formSelector.removeEventListener('submit', this._submitHandler);
+  this._form.reset();
+  this._form.removeEventListener('submit', this._submitHandler);
 }
  }

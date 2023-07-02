@@ -10,8 +10,8 @@ class PopupWithImage extends Popup {
 // Класс, который перезаписывает родительский метод open. В методе open класса PopupWithImage вставляется в попап картинка с src изображения и подпись к картинке
   open = (pictureData) => {
     this._picture.src = pictureData.link;
-    this._picture.alt = pictureData.title;
-    this._description.textContent = pictureData.title;
+    this._picture.alt = pictureData.name;
+    this._description.textContent = pictureData.name;
     super.open();
   }
 }

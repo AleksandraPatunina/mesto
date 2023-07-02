@@ -29,6 +29,7 @@ const api = new Api({
 // попап с увеличенной картинкой
 const picturePopup = new PopupWithImage('.popup-pictures');
 
+
 //информация в блоке profile
 const userInfo = new UserInfo(profileConfig);
 
@@ -37,6 +38,7 @@ const deletePopupCard = new PopupDeleteCard('.popup-delete', ({card, cardId}) =>
   api.deleteCard(cardId)
 .then(() => {
   card.removeCard();
+  deletePopupCard.close()
 })
 .catch((error => console.error(`Возникла ошибка при попытке удаления карточки ${error}`)))
 .finally(() => deletePopupCard.setupDefaultTextOnBtn())
@@ -45,7 +47,7 @@ const deletePopupCard = new PopupDeleteCard('.popup-delete', ({card, cardId}) =>
 //функция создания новой карточки
 function createNewCard (element){
   const card = new Card(element, picturePopup.open, deletePopupCard.open, (likeElement, cardId) => {
-if (likeElement.classList.contains('element__like-button_type_active')){
+    if (card.isLiked()) {
   api.deleteLike(cardId)
   .then(res => {
     card.toggleLike(res.likes);
@@ -66,8 +68,6 @@ const section = new Section((element) =>{
   section.addItemAppend(createNewCard(element))
 },'.elements__items');//<ul>
 
-const popupDeletePicture = document.querySelector('.popup-delete-pictures');
-
 //обновляем поля формы редактирования профиля на странице
 const profilePopup = new PopupWithForm('.profile-popup', (inputValue) => {
   // полученные введенные пользователем данные у объекта popupProfile передаем в метод setUserInfo() обновляющий соответствующие поля профиля на странице
@@ -77,14 +77,15 @@ const profilePopup = new PopupWithForm('.profile-popup', (inputValue) => {
   })
   .catch((error => console.error(`Возникла ошибка при попытке редактирования профиля ${error}`)))
   .finally(()=> profilePopup.setupDefaultTextOnBtn())
+  profilePopup.close()
 });
 
 // Popup для добавления новой картинки
 const popupAddCard = new PopupWithForm('.add-popup', (inputValue) => {
- Promise.all ([api.getInfo(), api.addCard(inputValue)])
-  .then(([userData,cardData]) => {
-    cardData.myId = userData._id;
-    section.addItemPrepend(createNewCard(cardData))
+  api.addCard(inputValue)
+  .then((res) => {
+    res.myId = res.owner._id;
+    section.addItemPrepend(createNewCard(res));
     popupAddCard.close()
   })
   .catch((error => console.error(`Возникла ошибка при попытке добавления картинки ${error}`)))
@@ -139,10 +140,22 @@ formEditAvatarValidation.deleteError();
  popupEditAvatar.open();
  });
 
+//  //принимаем массив с промисами и выполняем код только тогда, когда все промисы исполнены
 Promise.all([api.getInfo(), api.getCards()])
-.then(([userData,cardData]) => {
-  cardData.forEach(element => element.myId = userData._id)
-  userInfo.setUserInfo({username:userData.name, job:userData.about, avatar:userData.avatar})
-  section.renderItems(cardData);
-})
-.catch((error => console.error(`Возникла ошибка при начальной загрузке страницы ${error}`)))
+  .then(([userData, cardData]) => {
+    const modifiedCardData = cardData.map((card) => {
+      return {
+        ...card,
+        myId: userData._id,
+      };
+    });
+    userInfo.setUserInfo({
+      username: userData.name,
+      job: userData.about,
+      avatar: userData.avatar,
+    });
+    section.renderItems(modifiedCardData);
+  })
+  .catch((error) =>
+    console.error(`Возникла ошибка при начальной загрузке страницы ${error}`)
+  );

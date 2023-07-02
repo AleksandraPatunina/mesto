@@ -1,7 +1,8 @@
 export default class Popup {
     constructor(popupSelector) {
         this._popup = document.querySelector(popupSelector);
-        this._form = this._popup.querySelector('.form');
+        this._handlePopupCloseByClick = this._handlePopupCloseByClick.bind(this);
+    this._closePopupByKeydownEsc = this._closePopupByKeydownEsc.bind(this);
     }
 
     //закрытие popup при клике на оверлей и крестик
@@ -23,19 +24,26 @@ export default class Popup {
     //публичный метод который отвечает за открытие  попапа
     open() {
         this._popup.classList.add('popup_opened');
-        this.setEventListeners();
-        document.addEventListener('keydown', this._closePopupByKeydownEsc);
+        this.setEventListeners();//снимаю все слушатели в removeEventListeners()при закрытии каждого модального окна, предотвращая накопление их повторных вызовов
+       // document.addEventListener('keydown', this._closePopupByKeydownEsc);
     }
 
       //публичный метод который отвечает за закрытие  попапа
     close() {
         this._popup.classList.remove('popup_opened');
-        document.removeEventListener('keydown', this._closePopupByKeydownEsc);
-        document.removeEventListener('click', this._handlePopupCloseByClick);
+        this.removeEventListeners();
+        // document.removeEventListener('keydown', this._closePopupByKeydownEsc);
+        // document.removeEventListener('click', this._handlePopupCloseByClick);
     }
 
     // публичный метод, который добавляет слушатель клика иконке закрытия попапа + закрытие по оверлей 
     setEventListeners() {
         document.addEventListener('click', this._handlePopupCloseByClick);
+        document.addEventListener('keydown', this._closePopupByKeydownEsc);
     }
+
+    removeEventListeners() {
+        this._popup.removeEventListener('click', this._handlePopupCloseByClick);
+        document.removeEventListener('keydown', this._closePopupByKeydownEsc);
+      }
 }

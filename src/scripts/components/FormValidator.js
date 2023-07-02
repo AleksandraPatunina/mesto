@@ -25,6 +25,7 @@ class FormValidator {
     // Функция, которая убирает класс с ошибкой
     _hideInputError = (input) => {
         this._errorElement = this._form.querySelector(`.${input.id}-error`);
+        console.log( this._errorElement)
         input.classList.remove(this._inputErrorClass);
         // Скрываем сообщение об ошибке
         this._errorElement.classList.remove(this._errorClass);
