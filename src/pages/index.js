@@ -1,6 +1,5 @@
 import './index.css';
 import {
-  initialCards,
   openPopupBtn,
   formEditProfile,
   formAddCard,
@@ -18,19 +17,6 @@ import UserInfo from '../scripts/components/UserInfo.js';
 import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import PopupDeleteCard from '../scripts/components/PopupDeleteCard.js';
 import Api from '../scripts/components/Api.js'
-const selectorTemplate = '#picture-template';
-
-// попап с увеличенной картинкой
-const picturePopup = new PopupWithImage('.popup-pictures');
-
-//информация в блоке profile
-const userInfo = new UserInfo(profileConfig);
-
-
-const deletePopupCard = new PopupDeleteCard('.popup-delete', (element) => {
-  element.removeCard();
-  deletePopupCard.close();
-})
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-69',
@@ -40,11 +26,39 @@ const api = new Api({
   }
 }); 
 
+// попап с увеличенной картинкой
+const picturePopup = new PopupWithImage('.popup-pictures');
 
+//информация в блоке profile
+const userInfo = new UserInfo(profileConfig);
+
+//popup удления карточки с картинкой
+const deletePopupCard = new PopupDeleteCard('.popup-delete', ({card, cardId}) => {
+  api.deleteCard(cardId)
+.then(() => {
+  card.removeCard();
+})
+.catch((error => console.error(`Возникла ошибка при попытке удаления карточки ${error}`)))
+.finally(() => deletePopupCard.setupDefaultTextOnBtn())
+});
+
+//функция создания новой карточки
 function createNewCard (element){
   const card = new Card(element, picturePopup.open, deletePopupCard.open, (likeElement, cardId) => {
-
-  });  //добавить в середину selectorTemplate,
+if (likeElement.classList.contains('element__like-button_type_active')){
+  api.deleteLike(cardId)
+  .then(res => {
+    card.toggleLike(res.likes);
+  })
+  .catch((error => console.error(`Возникла ошибка при попытке убрать лайк ${error}`)))
+} else {
+  api.addLike(cardId)
+  .then(res => {
+    card.toggleLike(res.likes);    
+  })
+  .catch((error => console.error(`Возникла ошибка при попытке поставить лайк ${error}`)))
+}
+  });  //добавить в середину selectorTemplateи проверить лайк
   return card.createCard();
 }
 //задаем логику отображения карточек на странице и связывам м/у собой 2 компонента "Section" и "Card"
@@ -52,25 +66,17 @@ const section = new Section((element) =>{
   section.addItemAppend(createNewCard(element))
 },'.elements__items');//<ul>
 
-//отрисовываем карточки при загрузке страницы (из массива initialCards)
-//section.renderItems(initialCards);
-
 const popupDeletePicture = document.querySelector('.popup-delete-pictures');
-//console.log(popupDeletePicture);
-//const popupEditAvatar = document.querySelector('.edit-avatar-popup');
-//console.log(popupEditAvatar);
-
 
 //обновляем поля формы редактирования профиля на странице
 const profilePopup = new PopupWithForm('.profile-popup', (inputValue) => {
   // полученные введенные пользователем данные у объекта popupProfile передаем в метод setUserInfo() обновляющий соответствующие поля профиля на странице
-  //console.log('информация о пользователе будет сохранена в:', inputValue);
   api.setUserInfo(inputValue)
   .then(res => {
     userInfo.setUserInfo({username:res.name, job:res.about, avatar:res.avatar})
   })
   .catch((error => console.error(`Возникла ошибка при попытке редактирования профиля ${error}`)))
-  .finally()
+  .finally(()=> profilePopup.setupDefaultTextOnBtn())
 });
 
 // Popup для добавления новой картинки
@@ -82,7 +88,7 @@ const popupAddCard = new PopupWithForm('.add-popup', (inputValue) => {
     popupAddCard.close()
   })
   .catch((error => console.error(`Возникла ошибка при попытке добавления картинки ${error}`)))
-  .finally()
+  .finally(()=> popupAddCard.setupDefaultTextOnBtn())
 });
 
 //Popup для изменения аватара профиля
@@ -93,10 +99,8 @@ const popupEditAvatar = new PopupWithForm('.edit-avatar-popup',(InputValue)=> {
     userInfo.setUserInfo({username:res.name, job:res.about, avatar:res.avatar})
   })
   .catch((error => console.error(`Возникла ошибка при обновлении аватара профиля ${error}`)))
-  .finally()
-//document.querySelector('.profile__avatar').src = InputValue.avatar //src картинки аватара
+  .finally(()=>popupEditAvatar.setupDefaultTextOnBtn())
 }) 
-
 
 //экземпляр для валидации
 const formEditProfileValidation = new FormValidator(config, formEditProfile);
@@ -107,8 +111,6 @@ formAddCardValidation.enableValidation();
 
  const formEditAvatarValidation = new FormValidator(config, formEditAvatar);
  formEditAvatarValidation.enableValidation();
-
-
 
 //добавляем слушатель каждому попапу
 profilePopup.setEventListeners();

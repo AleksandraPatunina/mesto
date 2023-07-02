@@ -6,6 +6,8 @@ export default class PopupWithForm extends Popup {
     this._formSubmitFunction = formSubmitFunction;
     this._formSelector = this._popup.querySelector('.form');
     this._inputSelector = this._formSelector.querySelectorAll('.popup__input');
+    this._submitBtn = this._formSelector.querySelector('.popup__submit-button');
+    this._defaultBtnText = this._submitBtn.textContent;
   }
 
   // приватный метод, который собирает данные всех полей формы для размещения в профиле
@@ -28,10 +30,16 @@ setEventListeners () {
   super.setEventListeners();
   this._submitHandler = (evt) => {
     evt.preventDefault();
+    this._submitBtn.textContent =`${this._submitBtn.textContent}...`;
     this._formSubmitFunction(this._getInputValue());
     this.close(); 
   };
   this._formSelector.addEventListener('submit', this._submitHandler);
+}
+
+//появление на кнопке текста Сохранить...
+setupDefaultTextOnBtn(){
+  this._submitBtn.textContent = this._defaultBtnText
 }
 
 close() {

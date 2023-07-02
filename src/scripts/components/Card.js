@@ -24,16 +24,13 @@
 
     //ставим лайк
     _handleLike = () => {
-        this._likeBtn = this._cloneElement.querySelector('.element__like-button');
-        this._changeLike( , this._cardId)
-       // this._likeBtn.classList.toggle('element__like-button_type_active');
+        this._changeLike(this._likeBtn, this._cardId)
     }
 
     //удаление элемента
     _handleDeletePicture = () => {
-       // this._cloneElement.remove();
-        this._openDeletePopup(this);
-    }
+        this._openDeletePopup({ card: this, cardId: this._cardId });
+      }
 
     //открытие увеличенной картинки
     _handleOpenImagePopup = () => {
@@ -55,10 +52,11 @@ _changeTrashButtonVisibility(){
       }
 }
 
-removeCard() {
- this._cloneElement.remove();
-}
+removeCard = () => {
+    this._cloneElement.remove();
+  }
 
+//проверяем,я ли посавила лайк
 _checkLikes(){
     this._likes.forEach(element =>{
         if (element._id === this._myId){
@@ -68,6 +66,11 @@ _checkLikes(){
     })
     this._likeCounter.textContent = this._likesLengthArray
 } 
+
+toggleLike(likes){
+    this._likeBtn.classList.toggle('element__like-button_type_active');
+    this._likeCounter.textContent = likes.length
+}
 
 //публичный метод создания карточки (логика)
 createCard= () => {

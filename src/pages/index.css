@@ -22,6 +22,7 @@
 @import url(../blocks/element/__photo-name/element__photo-name.css);
 @import url(../blocks/element/__like-button/element__like-button.css);
 @import url(../blocks/element/__like-counter/element__like-counter.css);
+@import url(../blocks/element/__like-container/element__like-container.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);
