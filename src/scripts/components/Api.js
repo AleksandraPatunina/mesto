@@ -49,4 +49,16 @@ setNewAvatarPicture(data){
 })
 .then (this._checkResponse)
 }
+
+addCard(data){
+    return fetch(`${this._url}/cards`, {
+        method: 'POST',
+        headers: this._headers,
+        body: JSON.stringify({
+           name: data.title,
+           link: data.link,
+        })  
+    })
+    .then (this._checkResponse)
+}
 }

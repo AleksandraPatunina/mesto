@@ -42,7 +42,9 @@ const api = new Api({
 
 
 function createNewCard (element){
-  const card = new Card(element, picturePopup.open, deletePopupCard.open);  //добавить в середину selectorTemplate,
+  const card = new Card(element, picturePopup.open, deletePopupCard.open, (likeElement, cardId) => {
+
+  });  //добавить в середину selectorTemplate,
   return card.createCard();
 }
 //задаем логику отображения карточек на странице и связывам м/у собой 2 компонента "Section" и "Card"
@@ -73,7 +75,14 @@ const profilePopup = new PopupWithForm('.profile-popup', (inputValue) => {
 
 // Popup для добавления новой картинки
 const popupAddCard = new PopupWithForm('.add-popup', (inputValue) => {
-  section.addItem(createNewCard(inputValue));
+ Promise.all ([api.getInfo(), api.addCard(inputValue)])
+  .then(([userData,cardData]) => {
+    cardData.myId = userData._id;
+    section.addItemPrepend(createNewCard(cardData))
+    popupAddCard.close()
+  })
+  .catch((error => console.error(`Возникла ошибка при попытке добавления картинки ${error}`)))
+  .finally()
 });
 
 //Popup для изменения аватара профиля
@@ -87,7 +96,7 @@ const popupEditAvatar = new PopupWithForm('.edit-avatar-popup',(InputValue)=> {
   .finally()
 //document.querySelector('.profile__avatar').src = InputValue.avatar //src картинки аватара
 }) 
-//console.log(popupEditAvatar)
+
 
 //экземпляр для валидации
 const formEditProfileValidation = new FormValidator(config, formEditProfile);
