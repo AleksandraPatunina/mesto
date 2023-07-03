@@ -77,7 +77,6 @@ const profilePopup = new PopupWithForm('.profile-popup', (inputValue) => {
   })
   .catch((error => console.error(`Возникла ошибка при попытке редактирования профиля ${error}`)))
   .finally(()=> profilePopup.setupDefaultTextOnBtn())
-  profilePopup.close()
 });
 
 // Popup для добавления новой картинки
@@ -86,7 +85,6 @@ const popupAddCard = new PopupWithForm('.add-popup', (inputValue) => {
   .then((res) => {
     res.myId = res.owner._id;
     section.addItemPrepend(createNewCard(res));
-    popupAddCard.close()
   })
   .catch((error => console.error(`Возникла ошибка при попытке добавления картинки ${error}`)))
   .finally(()=> popupAddCard.setupDefaultTextOnBtn())
@@ -113,12 +111,12 @@ formAddCardValidation.enableValidation();
  const formEditAvatarValidation = new FormValidator(config, formEditAvatar);
  formEditAvatarValidation.enableValidation();
 
-//добавляем слушатель каждому попапу
-profilePopup.setEventListeners();
-popupAddCard.setEventListeners();
-picturePopup.setEventListeners();
-popupEditAvatar.setEventListeners();
-deletePopupCard.setEventListeners();
+//добавляем слушатель каждому попапу  -УБИРАЕМ,ЧТОБ НЕ ЗАДВАИВАТЬ СЛУШАТЕЛИ
+//  profilePopup.setEventListeners();
+//  popupAddCard.setEventListeners();
+//  picturePopup.setEventListeners();
+//  popupEditAvatar.setEventListeners();
+//  deletePopupCard.setEventListeners();
 
 //открытие popup для редактирования профиля
 openPopupBtn.addEventListener('click', () => {

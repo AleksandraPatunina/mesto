@@ -24,3 +24,8 @@
   opacity: 0.6;
   cursor: pointer;
 }
+
+.popup__submit-button:hover:disabled {
+  pointer-events: none;
+  cursor: default;
+}

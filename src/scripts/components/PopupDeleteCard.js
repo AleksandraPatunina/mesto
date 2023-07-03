@@ -15,7 +15,6 @@ export default class PopupDeleteCard extends Popup {
       evt.preventDefault();
       this._submitBtn.textContent = 'Сохранение...';
       this._submitFunction({ card: this._card, cardId: this._cardId });
-      //this.close();
      });
   }
   //появление на кнопке текста Сохранить...

@@ -25,7 +25,7 @@ export default class Popup {
     open() {
         this._popup.classList.add('popup_opened');
         this.setEventListeners();//снимаю все слушатели в removeEventListeners()при закрытии каждого модального окна, предотвращая накопление их повторных вызовов
-       // document.addEventListener('keydown', this._closePopupByKeydownEsc);
+      // document.addEventListener('keydown', this._closePopupByKeydownEsc);
     }
 
       //публичный метод который отвечает за закрытие  попапа
