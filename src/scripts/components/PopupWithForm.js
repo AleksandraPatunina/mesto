@@ -32,9 +32,9 @@ setEventListeners () {
     evt.preventDefault();
     this._submitBtn.textContent = 'Сохранение...';
     this._formSubmitFunction(this._getInputValue());
-    this.close(); 
   };
   this._form.addEventListener('submit', this._submitHandler);
+  console.log('Form submitted');
 }
 
 //появление на кнопке текста Сохранить...
@@ -45,6 +45,5 @@ setupDefaultTextOnBtn(){
 close() {
   super.close();
   this._form.reset();
-  this._form.removeEventListener('submit', this._submitHandler);
 }
  }

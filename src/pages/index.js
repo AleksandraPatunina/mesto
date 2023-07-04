@@ -29,7 +29,6 @@ const api = new Api({
 // попап с увеличенной картинкой
 const picturePopup = new PopupWithImage('.popup-pictures');
 
-
 //информация в блоке profile
 const userInfo = new UserInfo(profileConfig);
 
@@ -43,6 +42,7 @@ const deletePopupCard = new PopupDeleteCard('.popup-delete', ({card, cardId}) =>
 .catch((error => console.error(`Возникла ошибка при попытке удаления карточки ${error}`)))
 .finally(() => deletePopupCard.setupDefaultTextOnBtn())
 });
+
 
 //функция создания новой карточки
 function createNewCard (element){
@@ -74,6 +74,7 @@ const profilePopup = new PopupWithForm('.profile-popup', (inputValue) => {
   api.setUserInfo(inputValue)
   .then(res => {
     userInfo.setUserInfo({username:res.name, job:res.about, avatar:res.avatar})
+    profilePopup.close()    
   })
   .catch((error => console.error(`Возникла ошибка при попытке редактирования профиля ${error}`)))
   .finally(()=> profilePopup.setupDefaultTextOnBtn())
@@ -85,6 +86,7 @@ const popupAddCard = new PopupWithForm('.add-popup', (inputValue) => {
   .then((res) => {
     res.myId = res.owner._id;
     section.addItemPrepend(createNewCard(res));
+    popupAddCard.close()    
   })
   .catch((error => console.error(`Возникла ошибка при попытке добавления картинки ${error}`)))
   .finally(()=> popupAddCard.setupDefaultTextOnBtn())
@@ -96,6 +98,7 @@ const popupEditAvatar = new PopupWithForm('.edit-avatar-popup',(InputValue)=> {
   .then(res => {
     console.log(res)
     userInfo.setUserInfo({username:res.name, job:res.about, avatar:res.avatar})
+    popupEditAvatar.close()
   })
   .catch((error => console.error(`Возникла ошибка при обновлении аватара профиля ${error}`)))
   .finally(()=>popupEditAvatar.setupDefaultTextOnBtn())
@@ -110,13 +113,6 @@ formAddCardValidation.enableValidation();
 
  const formEditAvatarValidation = new FormValidator(config, formEditAvatar);
  formEditAvatarValidation.enableValidation();
-
-//добавляем слушатель каждому попапу  -УБИРАЕМ,ЧТОБ НЕ ЗАДВАИВАТЬ СЛУШАТЕЛИ
-//  profilePopup.setEventListeners();
-//  popupAddCard.setEventListeners();
-//  picturePopup.setEventListeners();
-//  popupEditAvatar.setEventListeners();
-//  deletePopupCard.setEventListeners();
 
 //открытие popup для редактирования профиля
 openPopupBtn.addEventListener('click', () => {

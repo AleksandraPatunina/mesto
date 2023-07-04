@@ -2,7 +2,7 @@ export default class Popup {
     constructor(popupSelector) {
         this._popup = document.querySelector(popupSelector);
         this._handlePopupCloseByClick = this._handlePopupCloseByClick.bind(this);
-    this._closePopupByKeydownEsc = this._closePopupByKeydownEsc.bind(this);
+        this._closePopupByKeydownEsc = this._closePopupByKeydownEsc.bind(this);
     }
 
     //закрытие popup при клике на оверлей и крестик
@@ -25,15 +25,12 @@ export default class Popup {
     open() {
         this._popup.classList.add('popup_opened');
         this.setEventListeners();//снимаю все слушатели в removeEventListeners()при закрытии каждого модального окна, предотвращая накопление их повторных вызовов
-      // document.addEventListener('keydown', this._closePopupByKeydownEsc);
     }
 
-      //публичный метод который отвечает за закрытие  попапа
+    //публичный метод который отвечает за закрытие  попапа
     close() {
         this._popup.classList.remove('popup_opened');
         this.removeEventListeners();
-        // document.removeEventListener('keydown', this._closePopupByKeydownEsc);
-        // document.removeEventListener('click', this._handlePopupCloseByClick);
     }
 
     // публичный метод, который добавляет слушатель клика иконке закрытия попапа + закрытие по оверлей 
@@ -43,7 +40,7 @@ export default class Popup {
     }
 
     removeEventListeners() {
-        this._popup.removeEventListener('click', this._handlePopupCloseByClick);
+        document.removeEventListener('click', this._handlePopupCloseByClick);
         document.removeEventListener('keydown', this._closePopupByKeydownEsc);
-      }
+    }
 }
