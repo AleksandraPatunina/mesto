@@ -74,7 +74,7 @@ const profilePopup = new PopupWithForm('.profile-popup', (inputValue) => {
   api.setUserInfo(inputValue)
   .then(res => {
     userInfo.setUserInfo({username:res.name, job:res.about, avatar:res.avatar})
-    profilePopup.close()    
+    profilePopup.close()  
   })
   .catch((error => console.error(`Возникла ошибка при попытке редактирования профиля ${error}`)))
   .finally(()=> profilePopup.setupDefaultTextOnBtn())
@@ -96,7 +96,6 @@ const popupAddCard = new PopupWithForm('.add-popup', (inputValue) => {
 const popupEditAvatar = new PopupWithForm('.edit-avatar-popup',(InputValue)=> {
   api.setNewAvatarPicture(InputValue)
   .then(res => {
-   // console.log(res)
     userInfo.setUserInfo({username:res.name, job:res.about, avatar:res.avatar})
     popupEditAvatar.close()
   })
@@ -117,7 +116,6 @@ formAddCardValidation.enableValidation();
 //открытие popup для редактирования профиля
 openPopupBtn.addEventListener('click', () => {
   formEditProfileValidation.deleteError();
-  //console.log('setInputValue вызван');
   profilePopup.setInputValue(userInfo.getUserInfo());
   profilePopup.open();
 });
