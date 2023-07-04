@@ -96,7 +96,7 @@ const popupAddCard = new PopupWithForm('.add-popup', (inputValue) => {
 const popupEditAvatar = new PopupWithForm('.edit-avatar-popup',(InputValue)=> {
   api.setNewAvatarPicture(InputValue)
   .then(res => {
-    console.log(res)
+   // console.log(res)
     userInfo.setUserInfo({username:res.name, job:res.about, avatar:res.avatar})
     popupEditAvatar.close()
   })

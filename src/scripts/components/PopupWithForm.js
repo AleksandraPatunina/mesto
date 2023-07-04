@@ -34,7 +34,6 @@ setEventListeners () {
     this._formSubmitFunction(this._getInputValue());
   };
   this._form.addEventListener('submit', this._submitHandler);
-  console.log('Form submitted');
 }
 
 //появление на кнопке текста Сохранить...
