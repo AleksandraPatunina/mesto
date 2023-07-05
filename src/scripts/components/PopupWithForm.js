@@ -26,14 +26,22 @@ export default class PopupWithForm extends Popup {
     })
   }
   
+// setEventListeners () {
+//   super.setEventListeners();
+//   this._submitHandler = (evt) => {
+//     evt.preventDefault();
+//     this._submitBtn.textContent = 'Сохранение...';
+//     this._formSubmitFunction(this._getInputValue());
+//   };
+//   this._form.addEventListener('submit', this._submitHandler);
+// }
 setEventListeners () {
   super.setEventListeners();
-  this._submitHandler = (evt) => {
+  this._form.addEventListener('submit', (evt) => {
     evt.preventDefault();
     this._submitBtn.textContent = 'Сохранение...';
     this._formSubmitFunction(this._getInputValue());
-  };
-  this._form.addEventListener('submit', this._submitHandler);
+  });
 }
 
 //появление на кнопке текста Сохранить...

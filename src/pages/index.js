@@ -113,6 +113,13 @@ formAddCardValidation.enableValidation();
  const formEditAvatarValidation = new FormValidator(config, formEditAvatar);
  formEditAvatarValidation.enableValidation();
 
+//добавляем слушатель каждому попапу 
+profilePopup.setEventListeners(); 
+popupAddCard.setEventListeners(); 
+picturePopup.setEventListeners(); 
+popupEditAvatar.setEventListeners(); 
+deletePopupCard.setEventListeners(); 
+
 //открытие popup для редактирования профиля
 openPopupBtn.addEventListener('click', () => {
   formEditProfileValidation.deleteError();
