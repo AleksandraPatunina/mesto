@@ -24,14 +24,14 @@ export default class Popup {
     //публичный метод который отвечает за открытие  попапа
     open() {
         this._popup.classList.add('popup_opened');
-        this.setEventListeners();//снимаю все слушатели в removeEventListeners()при закрытии каждого модального окна, предотвращая накопление их повторных вызовов
-      // document.addEventListener('keydown', this._closePopupByKeydownEsc);
+       // this.setEventListeners();
+      document.addEventListener('keydown', this._closePopupByKeydownEsc);
     }
 
       //публичный метод который отвечает за закрытие  попапа
     close() {
         this._popup.classList.remove('popup_opened');
-        this.removeEventListeners();
+        document.removeEventListener('keydown',this._closePopupByKeydownEsc);
         // document.removeEventListener('keydown', this._closePopupByKeydownEsc);
         // document.removeEventListener('click', this._handlePopupCloseByClick);
     }
@@ -41,9 +41,4 @@ export default class Popup {
         document.addEventListener('click', this._handlePopupCloseByClick);
         document.addEventListener('keydown', this._closePopupByKeydownEsc);
     }
-
-    removeEventListeners() {
-        this._popup.removeEventListener('click', this._handlePopupCloseByClick);
-        document.removeEventListener('keydown', this._closePopupByKeydownEsc);
-      }
 }
