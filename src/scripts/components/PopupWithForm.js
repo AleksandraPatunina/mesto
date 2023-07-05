@@ -25,23 +25,23 @@ export default class PopupWithForm extends Popup {
       input.value = settings[input.name]; //в нужный input здесь будет попадать нужная инф-ция со страницы
     })
   }
-  
-setEventListeners () {
-  super.setEventListeners();
+
+  setEventListeners() {
+    super.setEventListeners();
     this._form.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    this._submitBtn.textContent = 'Сохранение...';
-    this._formSubmitFunction(this._getInputValue());
-  });
-}
+      evt.preventDefault();
+      this._submitBtn.textContent = 'Сохранение...';
+      this._formSubmitFunction(this._getInputValue());
+    });
+  }
 
-//появление на кнопке текста Сохранить...
-setupDefaultTextOnBtn(){
-  this._submitBtn.textContent = this._defaultBtnText
-}
+  //появление на кнопке текста Сохранить...
+  setupDefaultTextOnBtn() {
+    this._submitBtn.textContent = this._defaultBtnText
+  }
 
-close() {
-  super.close();
-  this._form.reset();
+  close() {
+    super.close();
+    this._form.reset();
+  }
 }
- }
