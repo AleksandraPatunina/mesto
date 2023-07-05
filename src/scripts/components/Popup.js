@@ -36,6 +36,5 @@ export default class Popup {
     // публичный метод, который добавляет слушатель клика иконке закрытия попапа + закрытие по оверлей 
     setEventListeners() {
         document.addEventListener('click', this._handlePopupCloseByClick);
-        document.addEventListener('keydown', this._closePopupByKeydownEsc);
     }
 }
